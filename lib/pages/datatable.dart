@@ -86,25 +86,13 @@ class _MyDatatableState extends State<MyDatatable> with RestorationMixin {
         _dessertsDataSource!.sort<String>((d) => d.name, _sortAscending.value);
         break;
       case 1:
-        _dessertsDataSource!.sort<num>((d) => d.calories, _sortAscending.value);
+        _dessertsDataSource!.sort<String>((d) => d.kategori, _sortAscending.value);
         break;
       case 2:
-        _dessertsDataSource!.sort<num>((d) => d.fat, _sortAscending.value);
+        _dessertsDataSource!.sort<num>((d) => d.harga, _sortAscending.value);
         break;
       case 3:
-        _dessertsDataSource!.sort<num>((d) => d.carbs, _sortAscending.value);
-        break;
-      case 4:
-        _dessertsDataSource!.sort<num>((d) => d.protein, _sortAscending.value);
-        break;
-      case 5:
-        _dessertsDataSource!.sort<num>((d) => d.sodium, _sortAscending.value);
-        break;
-      case 6:
-        _dessertsDataSource!.sort<num>((d) => d.calcium, _sortAscending.value);
-        break;
-      case 7:
-        _dessertsDataSource!.sort<num>((d) => d.iron, _sortAscending.value);
+        _dessertsDataSource!.sort<num>((d) => d.stok, _sortAscending.value);
         break;
     }
 
@@ -169,14 +157,14 @@ class _MyDatatableState extends State<MyDatatable> with RestorationMixin {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Data Table'),
+        title: const Text('Data Makanan'),
       ),
       body: Scrollbar(
         child: ListView(
           children: [
             PaginatedDataTable(
               header: const Text(
-                  'Nutrition'), // Set the header text of the data table
+                  'Makanan'), // Set the header text of the data table
 
               // FIXME: error disini
               rowsPerPage: _rowsPerPage.value,
@@ -198,49 +186,24 @@ class _MyDatatableState extends State<MyDatatable> with RestorationMixin {
 
               columns: [
                 DataColumn(
-                  label: const Text('Dessert 1 serving'),
+                  label: const Text('Nama'),
                   onSort: (int columnIndex, bool ascending) =>
                       _sort<String>((d) => d.name, columnIndex, ascending),
                 ),
                 DataColumn(
-                  label: const Text('Calories'),
+                  label: const Text('Kategori'),
                   onSort: (int columnIndex, bool ascending) =>
-                      _sort<num>((d) => d.calories, columnIndex, ascending),
+                      _sort<String>((d) => d.kategori, columnIndex, ascending),
                 ),
                 DataColumn(
-                  label: const Text('Fat (g)'),
+                  label: const Text('Harga'),
                   onSort: (int columnIndex, bool ascending) =>
-                      _sort<num>((d) => d.fat, columnIndex, ascending),
+                      _sort<num>((d) => d.harga, columnIndex, ascending),
                 ),
                 DataColumn(
-                  label: const Text('Carbs (g)'),
-                  onSort: (int columnIndex, bool ascending) {
-                    _sort<num>((d) => d.carbs, columnIndex, ascending);
-                  },
-                ),
-                DataColumn(
-                  label: const Text('Protein (g)'),
-                  onSort: (int columnIndex, bool ascending) {
-                    _sort<num>((d) => d.protein, columnIndex, ascending);
-                  },
-                ),
-                DataColumn(
-                  label: const Text('Sodium (mg)'),
-                  onSort: (int columnIndex, bool ascending) {
-                    _sort<num>((d) => d.sodium, columnIndex, ascending);
-                  },
-                ),
-                DataColumn(
-                  label: const Text('Calcium (%)'),
-                  onSort: (int columnIndex, bool ascending) {
-                    _sort<num>((d) => d.calcium, columnIndex, ascending);
-                  },
-                ),
-                DataColumn(
-                  label: const Text('Iron (%)'),
-                  onSort: (int columnIndex, bool ascending) {
-                    _sort<num>((d) => d.iron, columnIndex, ascending);
-                  },
+                  label: const Text('Stok'),
+                  onSort: (int columnIndex, bool ascending) =>
+                      _sort<num>((d) => d.stok, columnIndex, ascending),
                 ),
               ],
               source: _dessertsDataSource!,
